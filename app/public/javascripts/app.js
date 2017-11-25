@@ -5,16 +5,18 @@ YTK.friends = (function($) {
   getFormData = function() {
     var name  = $('.user-name', '#friend-survey').val().trim(),
         image = $('.user-img', '#friend-survey').val().trim(),
-        q_1   = $('.q-1', '#friend-survey').val().trim(),
+        q_0   = $('.q-0', '#friend-survey').val().trim(),
         retVal = {},
-        survey = [];
+        survey = [],
+        score = parseInt(q_0);
 
-    survey.push({q1 : q_1});
+    survey.push({q0 : q_0});
 
     retVal = {
       name  : name,
       image : image,
-      survey   : survey
+      survey   : survey,
+      score : score
     };
 
     return retVal;

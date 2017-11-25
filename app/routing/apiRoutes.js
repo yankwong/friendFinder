@@ -11,6 +11,8 @@ const DATABASE_PATH = path.join(__dirname + '/../data/friendlist.json');
 
 router.post('/friends', function(req, res) {
 
+  var newFriend = new Friend(req.body);
+
   fs.readFile(DATABASE_PATH, "utf8", function(err, data) {
     if (err) {
       return console.log('read JSON error', err);
@@ -22,9 +24,9 @@ router.post('/friends', function(req, res) {
      friendList = new FriendList(JSON.parse(data));
     }
 
-console.log('hasadsf', req.body);
+    //get best match
+    var bestFriend = friendList.getBestMatch(newFriend);
 
-    var newFriend = new Friend(req.body);
     // push to friendLists
     friendList.addApplicants(newFriend);
 
@@ -32,12 +34,20 @@ console.log('hasadsf', req.body);
       if (err) return console.log('error writing to JSON', err);
       console.log('write file finished');
 
-      return res.status(200).send();
+      // send back something to trigger modal in frontend
+      // case 1: new list
+      // if (bestFriend === false) {
+
+      // }
+      // // case 2: got a best friend
+      // else {
+
+      // }
+
+      //return res.status(200).send();
+      res.json(bestFriend);
     });
-    
-    // use res.body, get total Score
-    // call function from Friends to determine the closest match
-    // res.send(//an obj)
+
   });
     
 });
