@@ -1,0 +1,16 @@
+.btn {
+  cursor: pointer;
+}
+
+.main-jumbotron {
+  text-align: center;
+}
+
+.api-links {
+  margin: 15px 0;
+  padding: 0 30px;
+}
+
+.go-survey-btn .fa {
+  padding-right: 5px;
+}

@@ -13,12 +13,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// make resources available for frontend
+app.use(express.static(path.join(__dirname + '/app/public')));
+
 // routes
 app.use('/', htmlRoutes);
 app.use('/api', apiRoutes);
-
-
-app.set('port', (process.env.PORT || 5000));
+app.get('*',function (req, res) {
+  res.sendFile(path.join(__dirname, '/app/public/home.html'));
+});
+app.set('port', (process.env.PORT || 3000));
 
 // Starts the server to begin listening
 app.listen(app.get('port'), function() {
