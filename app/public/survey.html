@@ -21,22 +21,53 @@
       <form id="friend-survey">
         <label class="name">Name (Required)</label>
         <input type="name" class="user-name" value="">
-        <label class="avatar">Link to Photo Image (Required)</label>
-        <input type="avatar" class="user-img" value="">
         
-        <div class="survey-question">
-          <h4>Question 1</h4>
-          <p>Your mind is always buzzing with unexplored ideas and plans.</p>
-          <select class="q-0" name="q-0">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+        <div class="questions-wrapper">
+          <div class="survey-question question-0">
+            <h4>Question 1</h4>
+            <p>How much did you enjoy your highschool years?</p>
+            <select class="q-0" name="q-0">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="survey-question question-1">
+            <h4>Question 2</h4>
+            <p>How much do you wanna change the world?</p>
+            <select class="q-1" name="q-1">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
         </div>
         <input class="submit-btn" type="submit">Submit</form>
     </form>
+    </div>
+
+    <div id="success-modal" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Here is your best match!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="api-links">
