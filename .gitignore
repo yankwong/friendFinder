@@ -1,3 +1,4 @@
 requirement.md
 node_modules
 .DS_Store
+app/data/friendlist.json
