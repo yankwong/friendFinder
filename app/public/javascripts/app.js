@@ -48,19 +48,14 @@ YTK.friends = (function($) {
       var dataObj = getFormData();
       console.log('form result', dataObj);
       if (verifyForm(dataObj)) {
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/friends", true);
-        xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            console.log('all good', JSON.stringify(dataObj));
-          }
-          else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 404) {
-            console.log('all bad');
-          }
-        }
-        xhr.send(JSON.stringify(dataObj));
+        $.ajax({
+          method: 'post',
+          url: "/api/friends",
+          data: dataObj,
+        })
+        .done(function(data) {
+          console.log('all good!!', data);
+        });
       }
       else {
         alert('Please fill out all the required fields');

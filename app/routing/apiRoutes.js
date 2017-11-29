@@ -24,8 +24,11 @@ router.post('/friends', function(req, res) {
      friendList = new FriendList(JSON.parse(data));
     }
 
-    //get best match
+    // get best match
     var bestFriend = friendList.getBestMatch(newFriend);
+
+    // TODO: remove
+    console.log('best friend: (false/obj)', bestFriend);
 
     // push to friendLists
     friendList.addApplicants(newFriend);
@@ -33,16 +36,6 @@ router.post('/friends', function(req, res) {
     fs.writeFile(DATABASE_PATH, JSON.stringify(friendList.print()), 'utf8', function(err) {
       if (err) return console.log('error writing to JSON', err);
       console.log('write file finished');
-
-      // send back something to trigger modal in frontend
-      // case 1: new list
-      // if (bestFriend === false) {
-
-      // }
-      // // case 2: got a best friend
-      // else {
-
-      // }
 
       //return res.status(200).send();
       res.json(bestFriend);

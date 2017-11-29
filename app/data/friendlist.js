@@ -14,16 +14,40 @@ FriendList.prototype.print = function(friendObj) {
   return this.applications;
 }
 
-FriendList.prototype.getBestMatch = function(friendObj) {
-  var totalFriends = this.applications.length,
-      random = randomIntFromInterval(0, totalFriends);
+function getAppWithClosestScore(apps, app) {
+  var closestIndex = -1,
+      smallestDiff = -1;
 
-  // new list
-  if (totalFriends === 0) {
+  apps.forEach(function(obj, index) {
+    var diff = Math.abs(parseInt(app.score) - parseInt(obj.score));
+
+    if (closestIndex < 0) {
+      closestIndex = index;
+      smallestDiff = diff;
+    }
+    else if (smallestDiff > diff) {
+      smallestDiff = diff;
+      closestIndex = index;
+    }
+  });
+
+  if (typeof apps[closestIndex] === 'undefined') {
     return false;
   }
   else {
-    return this.applications[random];
+    return apps[closestIndex];
+  }
+}
+
+FriendList.prototype.getBestMatch = function(friendObj) {
+  var closestMatch = getAppWithClosestScore(this.applications, friendObj);
+
+  // new list
+  if (closestMatch === false) {
+    return false;
+  }
+  else {
+    return closestMatch;
   }
   
 }
