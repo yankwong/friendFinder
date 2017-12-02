@@ -1,8 +1,7 @@
 function Friend(obj) {
   this.name   = obj.name;
-  this.image  = obj.image;
-  this.survey = obj.survey;
   this.score  = obj.score;
+  this.survey = obj["survey[]"];  //<-- why does .ajax() add this []??
 }
 
 

@@ -40,6 +40,16 @@ YTK.friends = (function($) {
   verifyForm = function(obj) {
     return true;
   },
+  populateBestMatchModal = function(obj) {
+    var $bestModal = $('#success-modal'),
+        $bestMatchName = $('.best-match', '#success-modal');
+
+    if (obj !== false) {
+      $bestMatchName.html(obj.name);
+    }
+
+    $bestModal.modal('show');
+  },
   initSubmitForm = function() {
     var $submit = $('.submit-btn', '#friend-survey');
 
@@ -49,11 +59,19 @@ YTK.friends = (function($) {
       console.log('form result', dataObj);
       if (verifyForm(dataObj)) {
         $.ajax({
+          dataType: "json",
           method: 'post',
           url: "/api/friends",
           data: dataObj,
         })
         .done(function(data) {
+          // the list is empty
+          if (data === false) {
+            populateBestMatchModal(false);
+          }
+          else {
+            populateBestMatchModal(data);
+          }
           console.log('all good!!', data);
         });
       }
